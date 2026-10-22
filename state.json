@@ -3,5 +3,5 @@
   "bb:GC=F": "none",
   "bb:USDJPY=X": "none",
   "rsi:NIY=F:1d": "none",
-  "rsi:NIY=F:60m": "none"
+  "rsi:NIY=F:60m": "low"
 }
