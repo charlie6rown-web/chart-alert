@@ -1,0 +1,26 @@
+name: nikkei-data
+on:
+  push:
+    branches: [nikkei-data]
+    paths: [.github/workflows/nikkei-data.yml]
+permissions:
+  contents: write
+jobs:
+  get:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q yfinance pandas
+      - run: |
+          python - <<'PY'
+          import yfinance as yf
+          d=yf.download('^N225',start='2024-01-01',progress=False,auto_adjust=False)
+          d.columns=[c[0] if isinstance(c,tuple) else c for c in d.columns]
+          d[['Open','High','Low','Close']].to_csv('n225.csv')
+          print(d.tail())
+          PY
+      - run: |
+          git config user.name bot; git config user.email bot@users.noreply.github.com
+          git add n225.csv && git commit -m "nikkei daily data" && git push
