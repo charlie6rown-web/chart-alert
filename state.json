@@ -1,6 +1,6 @@
 {
-  "bb:CL=F": "none",
-  "bb:GC=F": "none",
+  "bb:CL=F": "low",
+  "bb:GC=F": "high",
   "bb:USDJPY=X": "none",
   "rsi:NIY=F:1d": "none",
   "rsi:NIY=F:60m": "none"
